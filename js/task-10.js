@@ -10,17 +10,22 @@ const newCollection = document.querySelector(`#boxes`);
 //
 
 const createBoxes = () => {
+  destroyBoxes();
   const inputValue = input.value;
   let newObject = [];
+
   for (let i = 0; i <= inputValue; i += 1) {
     if (i < inputValue) {
       const newElements = document.createElement(`div`);
       newObject.push(newElements);
     }
+    let size = 30;
     newObject.map((element) => {
+      size += 10;
+
       element.style.backgroundColor = `${getRandomHexColor()}`;
-      element.style.height = `${i * 10 + 30}px`;
-      element.style.width = `${i * 10 + 30}px`;
+      element.style.height = `${size - 10}px`;
+      element.style.width = `${size - 10}px`;
       newCollection.prepend(element);
     });
   }

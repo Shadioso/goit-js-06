@@ -1,17 +1,19 @@
 const form = document.querySelector(`.login-form`);
 const inputs = document.querySelectorAll(`input`);
+
 const submitValidForm = (event) => {
   event.preventDefault();
-  const formData = new FormData(event.currentTarget);
-  const values = Object.fromEntries(formData.entries());
-  inputs.forEach((input) => {
-    if (input.value.trim() === "") {
-      alert("error");
-    }
-  });
+  const {
+    elements: { email, password },
+  } = event.currentTarget;
+  if (email.value === "" && password.value === "") {
+    return alert(`Please fill the fields`);
+  }
+  const userData = {
+    email: email.value,
+    password: password.value,
+  };
+  console.log(userData);
   form.reset();
-  console.log(values);
 };
-
-//
 form.addEventListener(`submit`, submitValidForm);
